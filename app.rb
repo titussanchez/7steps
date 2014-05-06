@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'less'
+require 'group_collection'
 
 class App < Sinatra::Base
   set :root, File.dirname(__FILE__)
@@ -32,6 +33,7 @@ class App < Sinatra::Base
   end
 
   get '/' do
+    @groups = GroupCollection.new
     haml :index
   end
 end
