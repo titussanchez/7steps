@@ -10,6 +10,7 @@ gem "haml"
 gem "less"
 gem "coffee-script"
 gem "uglifier"
+gem "virtus"
 
 # Development
 group :development do
