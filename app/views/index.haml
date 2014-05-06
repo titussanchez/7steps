@@ -1,6 +1,12 @@
 .container-fluid
-  %section
+  %section.groups-today
     %h1 Today
+    .groups-listing
+      - @groups.today.each do |group|
+        .group-details
+          %h2= group.name
+          %phone= group.phone
+          %email= group.email
 
-  %section
+  %section.groups-in-area
     %h1 In Your Area

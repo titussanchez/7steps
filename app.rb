@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/assetpack'
 require 'less'
+require 'group'
 require 'group_collection'
 
 class App < Sinatra::Base
@@ -17,9 +18,7 @@ class App < Sinatra::Base
     serve '/css',    :from => 'app/css'
     serve '/images', :from => 'app/images'
 
-    js :app, '/js/app.js', [
-      '/js/vendor/bootstrap3/bootstrap.js'
-    ]
+    js :app, '/js/app.js', []
 
     css :application, [
       '/css/vendor/bootstrap3/bootstrap.css',
@@ -32,8 +31,14 @@ class App < Sinatra::Base
     css_compression :simple
   end
 
+  #----------------------------------------------------------------------------#
+  # Routes                                                                     #
+  #----------------------------------------------------------------------------#
   get '/' do
     @groups = GroupCollection.new
+    3.times do
+      @groups << Group.new(:name => "Jordan's Group", :address => "555 East St.", :city => "Portage", :state => "MI", :zip => "49024", :email => "jordan@solidlives.com", :phone => "269-555-1212", :meeting_wday => 1)
+    end
     haml :index
   end
 end
