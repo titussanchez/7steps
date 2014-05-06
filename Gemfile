@@ -1,5 +1,5 @@
 # RVM settings (don't add a space after #)
-#ruby=ruby-1.9.3-head
+#ruby=ruby-2.1.1
 #ruby-gemset=7steps
 source 'https://rubygems.org'
 
