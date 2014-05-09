@@ -10,7 +10,6 @@ class App < Sinatra::Base
   set :environment, ENV['RACK_ENV'].to_sym
   Less.paths << File.join(File.dirname(__FILE__), '/app/css')
   Less.paths << File.join(File.dirname(__FILE__), '/app/css/vendor/bootstrap3')
-  puts Less.paths
 
   register Sinatra::AssetPack
   assets do
@@ -18,7 +17,7 @@ class App < Sinatra::Base
     serve '/css',    :from => 'app/css'
     serve '/images', :from => 'app/images'
 
-    js :app, '/js/app.js', []
+    js :app, '/js/app.js', ['/js/application.js']
 
     css :application, [
       '/css/vendor/bootstrap3/bootstrap.css',
@@ -37,7 +36,7 @@ class App < Sinatra::Base
   get '/' do
     @groups = GroupCollection.new
     3.times do
-      @groups << Group.new(:name => "Jordan's Group", :address => "555 East St.", :city => "Portage", :state => "MI", :zip => "49024", :email => "jordan@solidlives.com", :phone => "269-555-1212", :meeting_wday => 1)
+      @groups << Group.new(:name => "Jordan's Group", :address => "555 East St.", :city => "Portage", :state => "MI", :zip => "49024", :email => "jordan@solidlives.com", :phone => "269-555-1212", :meeting_wday => Date.today.wday)
     end
     haml :index
   end
