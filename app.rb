@@ -35,8 +35,8 @@ class App < Sinatra::Base
   #----------------------------------------------------------------------------#
   get '/' do
     @groups = GroupCollection.new
-    3.times do
-      @groups << Group.new(:name => "Jordan's Group", :address => "555 East St.", :city => "Portage", :state => "MI", :zip => "49024", :email => "jordan@solidlives.com", :phone => "269-555-1212", :meeting_wday => Date.today.wday)
+    3.times do |i|
+      @groups << Group.new(:name => "Jordan's Group #{i}", :address => "555 East St.", :city => "Portage", :state => "MI", :zip => "49024", :email => "jordan@solidlives.com", :phone => "269-555-1212", :meeting_wday => Date.today.wday, :lat => 42.314915 + i/50.0, :long => -85.667602 + i/50.0)
     end
     haml :index
   end
