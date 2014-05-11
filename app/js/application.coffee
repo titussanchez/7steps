@@ -15,6 +15,15 @@ initialize = ->
       user_location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
       map.setCenter(user_location)
 
-
-
 google.maps.event.addDomListener(window, 'load', initialize)
+
+
+class GroupView extends Backbone.View
+  tagName: 'li'
+  className: 'group-details'
+  render: ->
+    template = _.template("<h2><%= name %></h2><phone><%= phone %></phone><email><%= email %></email>")
+    @$el.html(template(@model))
+
+$(document).ready ->
+  window.gv = new GroupView( model: groups[0] )

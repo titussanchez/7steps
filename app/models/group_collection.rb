@@ -1,3 +1,5 @@
+require 'json'
+
 class GroupCollection
 
   def initialize
